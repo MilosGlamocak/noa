@@ -1,14 +1,33 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import '../styles/FirstPage.scss'
+import mouseHover from '/sounds/mouse-hover.mp3'
 
 function FirstPage() {
+
+  const audioRef = useRef(null);
+
+    const handleMouseOver = () => {
+        if (audioRef.current) {
+            audioRef.current.currentTime = 0.205;
+            audioRef.current.volume = 0;
+            audioRef.current.play();
+        }
+    };
+
+    const handleMouseOut = () => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+        }
+    };
+
   return (
     <div className='firstPageCont'>
         <div className='navCont'>
-            <p>Home</p>
-            <p>About</p>
-            <p>Services</p>
-            <p>Contact</p>
+            <audio ref={audioRef} src={mouseHover}></audio>
+            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Home</p>
+            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>About</p>
+            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Services</p>
+            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Contact</p>
         </div>
         <div className='logoCont'>
         <svg width="356" height="135" viewBox="0 0 356 135" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +37,7 @@ function FirstPage() {
         </svg>
         <p>The only marketing agency you will ever need.</p>
         </div>
-        <div className='bookBtn'>
+        <div className='bookBtn' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             <p>Book us now</p>
         </div>
     </div>
