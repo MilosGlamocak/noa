@@ -1,10 +1,15 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import '../styles/FirstPage.scss'
 import mouseHover from '/sounds/mouse-hover.mp3'
+import MenuIcon from '@mui/icons-material/Menu';
 
 function FirstPage() {
 
+    let [open, setOpen] = useState(false);
+
   const audioRef = useRef(null);
+  const navMobileRef = useRef(null);
+  const navRef = useRef(null);
 
     const handleMouseOver = () => {
         if (audioRef.current) {
@@ -20,14 +25,23 @@ function FirstPage() {
         }
     };
 
+    const handleOpenMenu = () => {
+        setOpen(!open)
+    }
+
   return (
     <div className='firstPageCont'>
+        <div className='navContMobile' ref={navMobileRef} onClick={handleOpenMenu} >
+            <div style={{right: open ? '-100%' : '0' }}><MenuIcon/></div>
+        </div>
         <div className='navCont'>
-            <audio ref={audioRef} src={mouseHover}></audio>
-            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Home</p>
-            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>About</p>
-            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Services</p>
-            <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Contact</p>
+            <div style={{left: open ? '0%' : '150%' }}>
+                <audio ref={audioRef} src={mouseHover}></audio>
+                <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Home</p>
+                <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>About</p>
+                <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Services</p>
+                <p onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>Contact</p>
+            </div>    
         </div>
         <div className='logoCont'>
         <svg width="356" height="135" viewBox="0 0 356 135" fill="none" xmlns="http://www.w3.org/2000/svg">

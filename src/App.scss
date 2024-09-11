@@ -1,13 +1,14 @@
-.appCont {
+.no-scroll {
+    overflow: hidden !important; /* Ensure this rule is applied */
+  }
+  
+  .appCont {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100svh;
     width: 100%;
-}
-
-body.no-scroll {
     overflow: hidden;
   }
   

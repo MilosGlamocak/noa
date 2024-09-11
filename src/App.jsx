@@ -6,11 +6,15 @@ import SecondPage from "./components/SecondPage";
 import './App.scss';
 
 function App() {
-  useEffect(() => {
-    // Add 'no-scroll' class to body to disable scrolling
-    document.body.classList.add("no-scroll");
 
-    // Remove 'no-scroll' class after 2 seconds to enable scrolling
+  useEffect(() => {
+    // Disable scrolling by adding 'no-scroll' class to body
+    document.body.classList.add("no-scroll");
+    
+    // Ensure the page starts at the top
+    window.scrollTo(0, 0);
+
+    // Enable scrolling after 2 seconds
     const timer = setTimeout(() => {
       document.body.classList.remove("no-scroll");
     }, 2000);

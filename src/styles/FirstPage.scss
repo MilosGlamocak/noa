@@ -13,7 +13,7 @@
     opacity: 1;
     user-select: none;
     pointer-events: none;
-
+    overflow: hidden;
     .logoCont {
         opacity: 0;
         animation: fade-in 0.5s forwards ease 2s;
@@ -62,55 +62,56 @@
             transition-duration: 0.3s;
         }
     }
+
+    .navContMobile {
+        display: none;
+    }
     
     .navCont {
         position: absolute;
         top: 3rem;
         right: 20rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: clamp(0rem, 3rem, 5rem);
-        animation: fade-in 0.5s forwards ease 2s;
-        opacity: 0;
-        z-index: 10;
-        * {
-            margin: 0;
-            padding: 0;
-        }
 
-        p {
-            position: relative; // This is necessary to make the :after element relative to each p individually
-            font-family: $third-family;
-            font-weight: 400;
-            font-size: 0.93rem;
-            text-align: center;
-            color: $text-primary;
-            cursor: pointer;
-            transition-duration: 0.3s;
-
-            &:hover {
-                color: $btn-text
-            }
-        
-            &:after {
-                content: '';
-                display: block;
-                background-color: $btn-text;
-                width: 0%;
-                height: 0.05rem;
-                position: absolute;
-                bottom: -0.2rem;
-                left: 0;
-                opacity: 0;
-                transform-origin: left;
+        & > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0rem, 3rem, 5rem);
+            animation: fade-in 0.5s forwards ease 2s;
+            opacity: 0;
+            z-index: 10;
+            p {
+                position: relative; // This is necessary to make the :after element relative to each p individually
+                font-family: $third-family;
+                font-weight: 400;
+                font-size: 0.93rem;
+                text-align: center;
+                color: $text-primary;
+                cursor: pointer;
                 transition-duration: 0.3s;
+    
+                &:hover {
+                    color: $btn-text
+                }
+            
+                &:after {
+                    content: '';
+                    background-color: $btn-text;
+                    width: 0%;
+                    height: 0.05rem;
+                    position: absolute;
+                    bottom: -0.2rem;
+                    left: 0;
+                    opacity: 0;
+                    transform-origin: left;
+                    transition-duration: 0.3s;
+                }
+            
+                &:hover:after {
+                    width: 100%;
+                    opacity: 1;
+                } 
             }
-        
-            &:hover:after {
-                width: 100%;
-                opacity: 1;
-            } 
         }
     }
 }
@@ -142,7 +143,6 @@
         opacity: 1;
         user-select: none;
         pointer-events: none;
-    
         .logoCont {
             opacity: 0;
             animation: fade-in 0.5s forwards ease 2s;
@@ -199,24 +199,59 @@
                 transition-duration: 0.3s;
             }
         }
+
+        .navContMobile {
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            display: flex;
+            & > div {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 4rem;
+                height: 4rem;
+                background-color: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(30px);
+                animation: fade-in 0.5s forwards ease 2s;
+                opacity: 0;
+                z-index: 10;
+                color: $text-primary;
+                transition-duration: 0.3s;
+            }
+        }
         
         .navCont {
             position: absolute;
             top: 0;
-            left: 50%;
-            transform: translate(-50%, 0%) !important;
-            padding: 3rem 0 1rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 100vw;
-            background-color: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(30px);
-            gap: 1rem;
-            animation: fade-in 0.5s forwards ease 2s;
-            opacity: 0;
-            z-index: 10;
+            right: 0;
+            overflow: hidden;
+            z-index: 9;
+            & > div{
+                position: relative;
+                top: 0%;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                height: 100%;
+                padding: 1rem 0 1rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 100vw;
+                background-color: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(30px);
+                gap: 1rem;
+                transition-duration: 0.3s;
+                /*animation: fade-in 0.5s forwards ease 2s;*/
+                opacity: 1;
+                z-index: 100;
+                overflow: hidden;
+            }
+
             p {
                 position: relative; // This is necessary to make the :after element relative to each p individually
                 font-family: $third-family;
