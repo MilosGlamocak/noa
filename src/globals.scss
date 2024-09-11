@@ -10,6 +10,18 @@ $font-family: 'Source Serif Pro', sans-serif;
 $second-family: "Inter", sans-serif;
 $third-family: "Roboto Serif", serif;
 
+// Define a mixin for disabling text selection and touch callout
+@mixin no-user-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+
 @keyframes  setHeight100{
     from {
         opacity: 0;

@@ -41,7 +41,7 @@
         transition-duration: 0.3s;
         margin: 0;
         padding: 0;
-        user-select: none;
+        @include no-user-select;
 
         &:hover {
             background-color: $text-primary;
@@ -80,6 +80,7 @@
             animation: fade-in 0.5s forwards ease 2s;
             opacity: 0;
             z-index: 10;
+            
             p {
                 position: relative; // This is necessary to make the :after element relative to each p individually
                 font-family: $third-family;
@@ -89,7 +90,7 @@
                 color: $text-primary;
                 cursor: pointer;
                 transition-duration: 0.3s;
-    
+                @include no-user-select;
                 &:hover {
                     color: $btn-text
                 }
