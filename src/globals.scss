@@ -9,3 +9,15 @@ $btn-text: #ffdc7d;
 $font-family: 'Source Serif Pro', sans-serif;
 $second-family: "Inter", sans-serif;
 $third-family: "Roboto Serif", serif;
+
+@keyframes  setHeight100{
+    from {
+        opacity: 0;
+        height: 0%;
+    }
+
+    to {
+        opacity: 0;
+        height: 100vh;
+    }
+}
