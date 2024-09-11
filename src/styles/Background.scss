@@ -20,5 +20,15 @@
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+        filter: blur(50px);
+        animation: 2s blur-in ease 1s forwards;
+    }
+}
+
+@keyframes blur-in {
+    from {
+        filter: blur(50px);
+    } to {
+        filter: blur(0px);
     }
 }

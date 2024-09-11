@@ -4,6 +4,7 @@ import LogoLoader from "./components/LogoLoader";
 import FirstPage from "./components/FirstPage";
 import SecondPage from "./components/SecondPage";
 import './App.scss';
+import HorizontalScrollContainer from "./components/HorizontalScrollContainer";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
     <div className="appCont">
       <FirstPage />
       <SecondPage />
+      <HorizontalScrollContainer />
       <LogoLoader />
       <Background />
     </div>
