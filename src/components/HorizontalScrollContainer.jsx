@@ -19,7 +19,7 @@ function HorizontalScrollContainer() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        setTimeout(() => {
+        /*setTimeout(() => {
             ScrollTrigger.normalizeScroll({
                 allowNestedScroll: true,
                 lockAxis: false,
@@ -35,7 +35,7 @@ function HorizontalScrollContainer() {
                     return Math.max(minMomentum, Math.min(maxMomentum, momentum));
                 }
             });
-        }, 2000);
+        }, 2000);*/
         
 
         ScrollTrigger.config({ ignoreMobileResize: true });
