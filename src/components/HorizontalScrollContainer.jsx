@@ -18,17 +18,27 @@ function HorizontalScrollContainer() {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
-        
 
         setTimeout(() => {
             ScrollTrigger.normalizeScroll({
                 allowNestedScroll: true,
                 lockAxis: false,
-                type: "touch,pointer", // now the page will be drag-scrollable on desktop because "pointer" is in the list
-              });
-        }, 2000)
-        ScrollTrigger.config({ ignoreMobileResize: true, });
+                type: "touch",
+                momentum: self => {
+                    // Adjust these values to get the desired smoothness
+                    const damping = 0.5;
+                    const maxMomentum = 1.1; // Maximum allowed momentum
+                    const minMomentum = 1.1; // Minimum momentum to prevent too quick stops
+    
+                    // Adjust momentum based on scrolling speed
+                    let momentum = self.velocityY * damping;
+                    return Math.max(minMomentum, Math.min(maxMomentum, momentum));
+                }
+            });
+        }, 2000);
         
+
+        ScrollTrigger.config({ ignoreMobileResize: true });
 
         // GSAP animation for the first row
         gsap.to('.firstRow', {
@@ -37,7 +47,7 @@ function HorizontalScrollContainer() {
                 markers: true,
                 start: 'top top',
                 end: () => '+=' + document.querySelector('.firstRow').offsetWidth,
-                scrub: 1,
+                scrub: 1, // Adjust to synchronize with scroll speed
                 pin: true,
             },
             ease: 'none',
@@ -50,8 +60,8 @@ function HorizontalScrollContainer() {
             scrollTrigger: {
                 trigger: '.secondRow',
                 markers: true,
-                start: 'top center',
-                end: () => '+=' + document.querySelector('.secondRow').offsetWidth,
+                start: () => `top top+=${document.querySelector('.firstRow').offsetHeight}`,
+                end: () => `+=${document.querySelector('.secondRow').offsetWidth}`,
                 scrub: 1,
                 pin: true,
             },
