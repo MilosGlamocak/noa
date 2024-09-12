@@ -18,13 +18,25 @@ function HorizontalScrollContainer() {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
+        
 
+        setTimeout(() => {
+            ScrollTrigger.normalizeScroll({
+                allowNestedScroll: true,
+                lockAxis: false,
+                type: "touch,pointer", // now the page will be drag-scrollable on desktop because "pointer" is in the list
+              });
+        }, 2000)
+        ScrollTrigger.config({ ignoreMobileResize: true, });
+        
+
+        // GSAP animation for the first row
         gsap.to('.firstRow', {
             scrollTrigger: {
                 trigger: '.firstRow',
                 markers: true,
                 start: 'top top',
-                end: /*() => '+=' + document.querySelector('.firstRow').offsetWidth*/'+=100%',
+                end: () => '+=' + document.querySelector('.firstRow').offsetWidth,
                 scrub: 1,
                 pin: true,
             },
@@ -33,19 +45,24 @@ function HorizontalScrollContainer() {
             duration: 5
         });
 
+        // GSAP animation for the second row
         gsap.to('.secondRow', {
             scrollTrigger: {
                 trigger: '.secondRow',
                 markers: true,
                 start: 'top center',
-                end: '+=100%',
-                scrub: 1.5,
+                end: () => '+=' + document.querySelector('.secondRow').offsetWidth,
+                scrub: 1,
                 pin: true,
             },
             ease: 'none',
             x: 600,
             duration: 5
         });
+
+        return () => {
+            ScrollTrigger.normalizeScroll(false);  // Clean up normalization on unmount
+        };
     }, []);
 
     return (
